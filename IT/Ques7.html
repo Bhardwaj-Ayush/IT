@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Pets</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    #petsContainer {
+      margin-top: 20px;
+    }
+
+    .pet {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .pet h2 {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Display Pets</h1>
+
+  <div id="petsContainer"></div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script>
+    $(document).ready(function(){
+      // Load data from the JSON file using AJAX
+      $.ajax({
+        url: 'pets.json',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          displayPets(data);
+        },
+        error: function() {
+          console.error('Error loading JSON data');
+        }
+      });
+    });
+
+    function displayPets(pets) {
+      var container = $('#petsContainer');
+
+      // Loop through each pet and display its information
+      pets.forEach(function(pet) {
+        var petHtml = `
+          <div class="pet">
+            <h2>${pet.name}</h2>
+            <p><strong>Age:</strong> ${pet.age}</p>
+            <p><strong>Weight:</strong> ${pet.weight}</p>
+            <p><strong>Type:</strong> ${pet.type}</p>
+            <p><strong>Likes:</strong> ${pet.likes}</p>
+          </div>
+        `;
+
+        container.append(petHtml);
+      });
+    }
+  </script>
+
+</body>
+</html>

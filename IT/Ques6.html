@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Information Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pet Information Form</h1>
+
+  <form id="petForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" name="weight" required>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" required>
+
+    <label for="likes">What it likes most:</label>
+    <input type="text" id="likes" name="likes" required>
+    
+    <label for="gender"> Gender :</label>
+    <input type="text">
+
+    <button type="button" onclick="submitform()">Submit</button>
+  </form>
+
+  <script>
+    function submitform (){
+        const name = document.getElementById('name').value;
+        const age = parseInt(document.getElementById('age').value);
+        const likes = document.getElementById('likes').value;
+
+        const petobject = {
+            name:name,
+            age:age,
+            likes:likes,
+        };
+
+        console.log(petobject);
+        console.log(JSON.stringify(petobject));
+
+    }
+  </script>
+
+</body>
+</html>

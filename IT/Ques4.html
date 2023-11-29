@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiplication Tables</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Multiplication Tables</h1>
+
+  <table id="multiplicationTable">
+    <!-- Table content will be dynamically generated here -->
+  </table>
+
+  <script>
+    var rowNumber = 2; // Starting row for multiplication tables
+    var fontSize = 16; // Starting font size
+
+    function showTables() {
+      var table = document.getElementById('multiplicationTable');
+
+      function generateTable() {
+        var row = table.insertRow();
+        var color = getRandomColor();
+
+        for (var i = 2; i <= 10; i++) {
+          var cell = row.insertCell();
+          cell.textContent = `${i} x ${rowNumber} = ${i * rowNumber}`;
+        }
+
+        row.style.fontSize = fontSize + 'px';
+        row.style.color = color;
+        rowNumber++;
+        fontSize += 2;
+
+        if (rowNumber > 10) {
+          clearInterval(intervalId);
+        }
+      }
+
+      var intervalId = setInterval(generateTable, 5000);
+    }
+
+    function getRandomColor() {
+      return '#' + Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    showTables();
+  </script>
+
+</body>
+</html>
